@@ -54,8 +54,9 @@ void	*ft_check_death(void *philo)
 			cast->status = FINISH;
 			give_forks(cast);
 			pthread_mutex_lock(cast->all->print_mutex);
-			printf("%llu \033[0;35mPhilo[%d] finished eating.\e[0m\n",
-				ft_get_time() - cast->all->run_time, cast->philo_id);
+            if(!cast->all->kill)
+                printf("%llu \033[0;35mPhilo[%d] finished eating.\e[0m\n",
+                       ft_get_time() - cast->all->run_time, cast->philo_id);
 			pthread_mutex_unlock(cast->all->print_mutex);
 			break ;
 		}
